@@ -8,6 +8,8 @@ import HotelManageCustomersPage from "./pages/HotelManageCustomersPage.jsx";
 import ErrorPage from "./pages/errors/ErrorPage.jsx";
 import AppLayout from "./layouts/AppLayout.jsx";
 
+document.title = 'Hotel Project';
+
 const browserRouter = createBrowserRouter([
   {
     element: <AppLayout />,

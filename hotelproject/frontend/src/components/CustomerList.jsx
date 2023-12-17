@@ -1,10 +1,11 @@
 import { getCustomers, deleteCustomer } from "../api/customer";
 import { useQuery } from "@tanstack/react-query";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { MdDeleteOutline , MdEdit } from "react-icons/md";
 
 // eslint-disable-next-line react/prop-types
-const CustomerList = ({ handleAddCustomerShow, handleUpdateCustomerShow }) => {
+const CustomerList = ({ handleAddCustomerOpen, handleUpdateCustomerOpen, showAddCustomerMenu, showUpdateCustomerMenu }) => {
   const { data, isLoading, error, isError, refetch } = useQuery({
     queryKey: ["getCustomers"],
     queryFn: () => getCustomers(searchRef.current.value),
@@ -15,6 +16,11 @@ const CustomerList = ({ handleAddCustomerShow, handleUpdateCustomerShow }) => {
     mutationKey: ["deleteCustomer"],
     mutationFn: deleteCustomer,
   });
+
+  useEffect(() => {
+    refetch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showAddCustomerMenu, showUpdateCustomerMenu])
 
   const searchRef = useRef("");
 
@@ -61,14 +67,14 @@ const CustomerList = ({ handleAddCustomerShow, handleUpdateCustomerShow }) => {
             </div>
           </div>
           <div className="col-sm-9 mt-3 mb-4 text-gred d-flex justify-content-end">
-            <button onClick={handleAddCustomerShow} className="btn btn-success">
+            <button onClick={handleAddCustomerOpen} className="btn btn-success">
               Add Customer
             </button>
           </div>
         </div>
         <div className="row">
           <div className="table-responsive">
-            <table className="table table-striped table-hover table-bordered">
+            <table className="table table-striped table-hover table-bordered mb-0">
               <thead>
                 <tr>
                   <th>Id</th>
@@ -99,16 +105,14 @@ const CustomerList = ({ handleAddCustomerShow, handleUpdateCustomerShow }) => {
                         <td>{customer.nrOfMembers}</td>
                         <td className="space-x-2">
                           <button
-                            onClick={handleUpdateCustomerShow}
-                            className="bg-blue-800 text-white px-3 py-1 rounded"
+                            onClick={() => handleUpdateCustomerOpen(customer.id)}
                           >
-                            Update
+                            <MdEdit fontSize="1.5em"/>
                           </button>
                           <button
                             onClick={() => handleDelete(customer.id)}
-                            className="bg-red-700 text-white px-3 py-1 rounded"
                           >
-                            Delete
+                            <MdDeleteOutline fontSize="1.5em"/>
                           </button>
                         </td>
                       </tr>
@@ -123,7 +127,8 @@ const CustomerList = ({ handleAddCustomerShow, handleUpdateCustomerShow }) => {
             <h2 className="text-center mx-auto">
               {isLoading
                 ? "Loading..."
-                : error.response.status === 404
+                : error.response == null ? "Error: Couldn't connect to the server" : 
+                error.response.status === 404
                 ? "No Customers Found"
                 : `${error.message}`}
             </h2>
