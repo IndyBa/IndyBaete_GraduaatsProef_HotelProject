@@ -1,19 +1,19 @@
 INFO ALGEMEEN:
-Voor mijn graduaatsproef heb ik ook een GitHub-link:
+Voor mijn graduaatsproef heb ik ook een GitHub-link: https://github.com/IndyBa/IndyBaete_GraduaatsProef_HotelProject.git
 Hier staat alles nog eens dubbel voor de zekerheid, mijn backend, frontend, de database-import en mijn verslag. Om dit project succesvol te laten werken, is het essentieel dat zowel de backend als de frontend gelijktijdig wordt uitgevoerd en dat de database beschikbaar is.
 
 
 
 INFO DATABASE:
-Voor de database heb ik MySQL gebruikt. Je kunt deze makkelijk importen door ...
+Voor de database heb ik MySQL gebruikt. Je kunt deze eenvoudig importeren door het hoteldb.sql bestand dat zich in de hotelproject map bevindt, in MySQL Workbench te importeren. Zorg ervoor dat deze database geopend is, zodat de backend er verbinding mee kan maken.
 
 
 
 INFO BACKEND:
-De backend is ontwikkeld in Java met behulp van het IntelliJ IDE. Het project is opgezet met het Spring Boot Framework en enkele andere dependencies die je kunt vinden in het pom.xml-bestand van het backendproject. Om de backend te koppelen aan de database, kan het nodig zijn om het application.properties bestand te bewerken. Dit bestand bevindt zich in de map: hotelproject\backend\src\main\resources\application.properties 
-Mogelijk moet je de velden voor url, user en password aanpassen aan de waarden die overeenkomen met jouw MySQL-database. Zorg er vervolgens voor dat je het project uitvoert via de HotelProjectApplication klasse om de backend te doen werken.
+De backend is ontwikkeld in Java met behulp van het IntelliJ IDE en wordt beheerd door Maven. Het project is opgezet met het Spring Boot Framework en enkele andere dependencies die je kunt vinden in het pom.xml-bestand van de backend. Om de backend te koppelen aan de database, kan het nodig zijn om het application.properties bestand te bewerken. Dit bestand bevindt zich in de map: hotelproject\backend\src\main\resources\application.properties 
+Mogelijk moet je de velden voor url, user en password aanpassen met de waarden die overeenkomen met jouw MySQL-database. Zorg er vervolgens voor dat je het project uitvoert via de HotelProjectApplication klasse om de backend te doen werken.
 
 
 
 INFO FRONTEND:
-De frontend is ontwikkeld in react met behulp van het Visual Studio Code IDE. Als je dit project wilt doen werken moet je ...
+De frontend is ontwikkeld in React met behulp van het Visual Studio Code IDE. Dit project maakt gebruik van Yarn als package manager. Om het project correct te laten werken, voer je 'yarn install' uit in de command line om alle benodigde pakketten te installeren. Daarna, om de frontend te activeren, voer je 'yarn dev' uit in de command line en zal je een link krijgen naar de website.
