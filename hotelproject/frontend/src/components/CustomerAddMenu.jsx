@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { addCustomer } from "../api/customer";
 import { useMutation } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 const CustomerValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -70,14 +71,17 @@ const CustomerAddMenu = ({ handleAddCustomerClose, showAddCustomerMenu }) => {
     resetForm();
   };
 
-  if (isSuccess) {
-    reset();
-    handleAddCustomerClose();
-    resetForm();
-  } else if (isError){
-    reset();
-    window.alert(error)
-  }
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+      handleAddCustomerClose();
+      resetForm();
+    } else if (isError) {
+      reset();
+      window.alert(error);
+    }
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, isError, error]);
 
   return (
     <div className="model_box">
